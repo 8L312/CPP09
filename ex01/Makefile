@@ -1,10 +1,10 @@
-SRCS		= 
+SRCS		= main.cpp 
 
 OBJS		= ${SRCS:.cpp=.o}
 
 RM			= rm -f
 
-NAME		= megaphone
+NAME		= RPN
 
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 
@@ -15,9 +15,6 @@ CC			= g++-11
 
 ${NAME}:	${OBJS}
 			${CC} ${FLAGS} -o ${NAME} ${OBJS}
-
-#${NAME}:
-#			${CC} ${FLAGS} ${SRCS} -o ${NAME}
 
 all:		${NAME}
 
