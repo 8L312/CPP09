@@ -1,10 +1,10 @@
-SRCS		= 
+SRCS		= main.cpp BitcoinExchange.cpp
 
 OBJS		= ${SRCS:.cpp=.o}
 
 RM			= rm -f
 
-NAME		= megaphone
+NAME		= brc
 
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 
