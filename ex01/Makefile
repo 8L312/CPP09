@@ -1,4 +1,4 @@
-SRCS		= main.cpp 
+SRCS		= main.cpp RPN.cpp
 
 OBJS		= ${SRCS:.cpp=.o}
 
@@ -8,7 +8,7 @@ NAME		= RPN
 
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 
-CC			= g++-11
+CC			= g++
 
 .cpp.o:
 			${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}

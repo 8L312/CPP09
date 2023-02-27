@@ -8,16 +8,13 @@ NAME		= brc
 
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 
-CC			= g++-11
+CC			= g++
 
 .cpp.o:
 			${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}
 
 ${NAME}:	${OBJS}
 			${CC} ${FLAGS} -o ${NAME} ${OBJS}
-
-#${NAME}:
-#			${CC} ${FLAGS} ${SRCS} -o ${NAME}
 
 all:		${NAME}
 

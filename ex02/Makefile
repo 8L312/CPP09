@@ -1,14 +1,14 @@
-SRCS		= 
+SRCS		= main.cpp
 
 OBJS		= ${SRCS:.cpp=.o}
 
 RM			= rm -f
 
-NAME		= megaphone
+NAME		= PmergeMe
 
 FLAGS		= -Wall -Wextra -Werror -std=c++98
 
-CC			= g++-11
+CC			= g++
 
 .cpp.o:
 			${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}
@@ -16,8 +16,6 @@ CC			= g++-11
 ${NAME}:	${OBJS}
 			${CC} ${FLAGS} -o ${NAME} ${OBJS}
 
-#${NAME}:
-#			${CC} ${FLAGS} ${SRCS} -o ${NAME}
 
 all:		${NAME}
 
