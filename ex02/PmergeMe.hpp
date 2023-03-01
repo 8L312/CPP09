@@ -22,6 +22,8 @@ public:
 
 	void	takeArg(char **av);
 	void	sortValues(void);
+	void	sortVector(void);
+	void	sortList(void);
 	void	displayResults(void);
 
 	PmergeMe	&operator=(PmergeMe const &rhs);
