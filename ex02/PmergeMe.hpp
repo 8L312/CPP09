@@ -8,9 +8,10 @@
 # include <ctime>
 # include <list>
 # include <vector>
+# include <set>
 #include <algorithm>
 
-# define MAXDISPLAY 10
+# define MAXDISPLAY 20
 
 class PmergeMe
 {
@@ -31,8 +32,10 @@ public:
 private:
 	std::vector<unsigned int>	_vector;
 	std::list<unsigned int>		_list;
+	std::set<unsigned int>		_set;
 	double		_timeVector;
 	double		_timeList;
+	double		_timeSet;
 
 };
 

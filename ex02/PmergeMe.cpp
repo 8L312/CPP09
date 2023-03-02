@@ -37,6 +37,15 @@ void	PmergeMe::takeArg(char **av)
 		_vector.push_back( std::atoi(av[i]) );
 		_list.push_back( std::atoi(av[i]) );
 	}
+	
+	i = 0;
+	clock_t start = clock();
+
+	while (av[++i] != NULL)
+		_set.insert( std::atoi(av[i]) );
+
+	clock_t end = clock();
+	_timeSet = (end - start) / static_cast<double>(CLOCKS_PER_SEC);
 }
 
 void	PmergeMe::sortValues(void)
@@ -49,21 +58,21 @@ void	PmergeMe::sortValues(void)
 	_list.sort();
 	end = clock();
 
-	_timeList = (end - start) / (double)CLOCKS_PER_SEC;
+	_timeList = (end - start) / static_cast<double>(CLOCKS_PER_SEC);
 
 	// VECTOR SORTING //
 	start = clock();
 	std::sort( _vector.begin(), _vector.end() );
 	end = clock();
 
-	_timeVector = (end - start) / (double)CLOCKS_PER_SEC;
+	_timeVector = (end - start) / static_cast<double>(CLOCKS_PER_SEC);
 }
 
 void	PmergeMe::sortVector(void)
 {
 	std::vector<unsigned int>	tmp;
-	clock_t	start;
-	clock_t	end;
+	clock_t						start;
+	clock_t						end;
 
 	start = clock();
 
@@ -71,18 +80,6 @@ void	PmergeMe::sortVector(void)
 	_vector.pop_back();
 	while ( !_vector.empty() )
 	{
-		/*std::vector<unsigned int>::iterator lil = _vector.begin();
-
-		for (std::vector<unsigned int>::iterator it = _vector.begin();
-				it != _vector.end(); it++)
-		{
-			if (*it <= *lil)
-				lil = it;
-		}
-		tmp.push_back(*lil);
-		_vector.erase(lil);*/
-		//////////////////
-
 		std::vector<unsigned int>::iterator	Itmp = tmp.begin();
 		while (_vector.back() >= *Itmp && Itmp != tmp.end())
 			Itmp++;
@@ -91,27 +88,31 @@ void	PmergeMe::sortVector(void)
 	}
 	_vector = tmp;
 
-/*	int n = _vector.size();
-	for (int i = 0; i < n - 1; i++) 
-	{
-		for (int j = 0; j < n - i - 1; j++) 
-		{
-			if (_vector[j] > _vector[j + 1]) 
-			{
-				int temp = _vector[j];
-				_vector[j] = _vector[j + 1];
-				_vector[j + 1] = temp;
-			}
-		}
-	}*/
-
 	end = clock();
-	_timeVector = (end - start) / (double)CLOCKS_PER_SEC;
+	_timeVector = (end - start) / static_cast<double>(CLOCKS_PER_SEC);
 }
 
 void	PmergeMe::sortList(void)
 {
-	return ;
+	std::list<unsigned int>	tmp;
+	clock_t					start;
+	clock_t					end;
+
+	start = clock();
+	tmp.push_back(_list.back());
+	_list.pop_back();
+	while ( !_list.empty() )
+	{
+		std::list<unsigned int>::iterator	Itmp = tmp.begin();
+		while (_list.back() >= *Itmp && Itmp != tmp.end())
+			Itmp++;
+		tmp.insert( Itmp, _list.back() );
+		_list.pop_back();
+	}
+	_list = tmp;
+
+	end = clock();
+	_timeList = (end - start) / static_cast<double>(CLOCKS_PER_SEC);
 }
 
 void	PmergeMe::displayResults(void)
@@ -130,11 +131,16 @@ void	PmergeMe::displayResults(void)
 	}
   	std::cout << '\n';
 
-	std::cout << "Time to process a range of " << _list.size()
-		<< " elements with std::list : " << std::fixed
-		<< _timeList * 1000000 << " us" << std::endl;
-	
 	std::cout << "Time to process a range of " << _vector.size()
 		<< " elements with std::vector : " << std::fixed
-		<< _timeVector * 1000 << " ms" << std::endl;
+		<< _timeVector * 1000000  << " us" << std::endl;
+
+	std::cout << "Time to process a range of " << _list.size()
+		<< " elements with std::list   : " << std::fixed
+		<< _timeList * 1000000 << " us" << std::endl;
+
+
+	std::cout << "Time to process a range of " << _set.size()
+		<< " elements with std::set    : " << std::fixed
+		<< _timeSet * 1000000 << " us" << std::endl;
 }

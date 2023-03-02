@@ -42,8 +42,11 @@ int	main(int ac, char **av)
 	std::cout << std::endl;
 
 	sorter.sortVector();
-	//sorter.sortValues();
+	sorter.sortList();
 	sorter.displayResults();
 
+	std::cout << "\n with std::sort(vector) & list.sort()\n";
+	sorter.sortValues();
+	sorter.displayResults();
 	return (0);
 }
